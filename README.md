@@ -21,10 +21,7 @@ allprojects {
 Then, add the library to your project `build.gradle`
 ```gradle
 dependencies {
-	...
-    compile('com.github.commit451.YouTubeExtractor:YouTubeExtractor:0.0.1@aar') {
-        transitive = true
-    }
+    compile 'com.github.Commit451:YouTubeExtractor:0.0.1'
 }
 ```
 
