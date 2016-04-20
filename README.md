@@ -2,28 +2,9 @@
 A helper to extract the streaming URL from a YouTube video
 
 [![Build Status](https://travis-ci.org/Commit451/YouTubeExtractor.svg?branch=master)](https://travis-ci.org/Commit451/YouTubeExtractor)
+[![](https://jitpack.io/v/Commit451/YouTubeExtractor.svg)](https://jitpack.io/#Commit451/YouTubeExtractor)
 
 This library was originally found [here](https://github.com/flipstudio/YouTubeExtractor) in a project by [flipstudio](https://github.com/flipstudio). It has since been modified and cleaned up a bit to make it more user friendly.
-
-# Gradle Dependency
-
-Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
-
-```gradle
-allprojects {
-	repositories {
-		...
-		maven { url "https://jitpack.io" }
-	}
-}
-```
-
-Then, add the library to your project `build.gradle`
-```gradle
-dependencies {
-    compile 'com.github.Commit451:YouTubeExtractor:0.0.1'
-}
-```
 
 # Usage
 This library is only responsible for getting the information needed from a YouTube video given its video id (which can be found in the url of any youtube video. It is not responsible for playback of the video. However, you can see in the sample app how this can be done using `MediaPlayer` and a `SurfaceView`
