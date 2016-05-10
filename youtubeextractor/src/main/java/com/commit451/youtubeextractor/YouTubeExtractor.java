@@ -25,9 +25,9 @@ public class YouTubeExtractor {
     interface YouTube {
 
         @GET("get_video_info?el=embedded&ps=default&gl=US")
-        Call<YouTubeExtrationResult> getYouTubeVideoData(@Query("video_id") String videoId,
-                                                       @Query("language") String language,
-                                                       @Header("Accept-Language") String languageForHeader);
+        Call<YouTubeExtractionResult> getYouTubeVideoData(@Query("video_id") String videoId,
+                                                          @Query("language") String language,
+                                                          @Header("Accept-Language") String languageForHeader);
     }
 
     public static int YOUTUBE_VIDEO_QUALITY_SMALL_240 = 36;
@@ -76,7 +76,7 @@ public class YouTubeExtractor {
      * @param videoId the id of the YouTube video, which can be found in the URL
      * @return the Retrofit call, which you can call {@link Call#execute()} or {@link Call#enqueue(Callback)} on
      */
-    public Call<YouTubeExtrationResult> extract(@NonNull String videoId) {
+    public Call<YouTubeExtractionResult> extract(@NonNull String videoId) {
         return mYouTube.getYouTubeVideoData(videoId, mLanguage, mLanguage);
     }
 }

@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.commit451.youtubeextractor.sample.MainActivity">
 
-    <ImageView
-        android:id="@+id/image"
+    <com.devbrackets.android.exomedia.ui.widget.EMVideoView
+        android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@null"
-        android:visibility="gone"/>
+        android:layout_height="match_parent" />
 
-    <TextureView
-        android:id="@+id/texture_view"
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/thumb"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="After quitting a comfortable day job, photographer Shane Black spent two months on the road shooting time-lapses of some of America's most beautiful spots. His Adventure Is Calling video is the mesmerizing result, made from about 10,000 of the photos he took." />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

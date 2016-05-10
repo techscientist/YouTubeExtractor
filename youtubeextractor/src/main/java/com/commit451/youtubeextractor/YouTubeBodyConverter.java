@@ -20,10 +20,10 @@ import static java.util.Arrays.asList;
 /**
  * Converts the bodies for the YouTubes
  */
-class YouTubeBodyConverter implements Converter<ResponseBody, YouTubeExtrationResult> {
+class YouTubeBodyConverter implements Converter<ResponseBody, YouTubeExtractionResult> {
 
     @Override
-    public YouTubeExtrationResult convert(ResponseBody value) throws IOException {
+    public YouTubeExtractionResult convert(ResponseBody value) throws IOException {
         String html = value.string();
 
         HashMap<String, String> video = getQueryMap(html, "UTF-8");
@@ -65,7 +65,7 @@ class YouTubeBodyConverter implements Converter<ResponseBody, YouTubeExtrationRe
             final Uri defaultThumbUri = video.containsKey("iurl") ? Uri.parse(video.get("iurl")) : null;
             final Uri standardThumbUri = video.containsKey("iurlsd") ? Uri.parse(video.get("iurlsd")) : null;
 
-            return new YouTubeExtrationResult(sd240VideoUri, sd360VideoUri, hd720VideoUri, hd1080VideoUri,
+            return new YouTubeExtractionResult(sd240VideoUri, sd360VideoUri, hd720VideoUri, hd1080VideoUri,
                     mediumThumbUri, highThumbUri, defaultThumbUri, standardThumbUri);
         } else {
             throw new YouTubeExtractionException("Status: " + video.get("status") + "\nReason: " + video.get("reason") + "\nError code: " + video.get("errorcode"));

@@ -36,6 +36,9 @@ if (response.isSuccessful()) {
 }
 ```
 
+# Video Playback
+As stated before, this library was only created to extract video stream Urls from YouTube. I recommend using the [ExoMedia](https://github.com/brianwernick/ExoMedia) library to play the video streams to the user. See the sample app for this library for an example.
+
 License
 --------
 

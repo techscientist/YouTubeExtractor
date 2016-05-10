@@ -21,7 +21,7 @@ class YouTubeExtractionConverterFactory extends Converter.Factory {
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         // This is good, we only register if the call includes this type, so that we could potentially
         // still be okay with having additional converter factories if we needed to
-        if (type == YouTubeExtrationResult.class) {
+        if (type == YouTubeExtractionResult.class) {
             return new YouTubeBodyConverter();
         }
         // Allow others to give it a go
