@@ -66,6 +66,10 @@ public class YouTubeExtractor {
         return extractor;
     }
 
+    private YouTubeExtractor() {
+        //Use the create method
+    }
+
     /**
      * Set the language. Defaults to {@link Locale#getDefault()}
      * @param language the language
