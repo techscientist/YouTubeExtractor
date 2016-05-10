@@ -10,24 +10,17 @@ import android.support.annotation.Nullable;
  */
 public class YouTubeExtractionResult implements Parcelable {
 
-    private final Uri mSd240VideoUri;
-    private final Uri mSd360VideoUri;
-    private final Uri mHd720VideoUri;
-    private final Uri mHd1080VideoUri;
-    private final Uri mMediumThumbUri;
-    private final Uri mHighThumbUri;
-    private final Uri mDefaultThumbUri;
-    private final Uri mStandardThumbUri;
+    private Uri mSd240VideoUri;
+    private Uri mSd360VideoUri;
+    private Uri mHd720VideoUri;
+    private Uri mHd1080VideoUri;
+    private Uri mMediumThumbUri;
+    private Uri mHighThumbUri;
+    private Uri mDefaultThumbUri;
+    private Uri mStandardThumbUri;
 
-    protected YouTubeExtractionResult(Uri sd240VideoUri, Uri sd360VideoUri, Uri hd720VideoUri, Uri hd1080VideoUri, Uri mediumThumbUri, Uri highThumbUri, Uri defaultThumbUri, Uri standardThumbUri) {
-        mSd240VideoUri = sd240VideoUri;
-        mSd360VideoUri = sd360VideoUri;
-        mHd720VideoUri = hd720VideoUri;
-        mHd1080VideoUri = hd1080VideoUri;
-        mMediumThumbUri = mediumThumbUri;
-        mHighThumbUri = highThumbUri;
-        mDefaultThumbUri = defaultThumbUri;
-        mStandardThumbUri = standardThumbUri;
+    protected YouTubeExtractionResult() {
+        //Do the rest in the setters
     }
 
     @Nullable
@@ -35,9 +28,19 @@ public class YouTubeExtractionResult implements Parcelable {
         return mSd240VideoUri;
     }
 
+    protected YouTubeExtractionResult setSd240VideoUri(Uri uri) {
+        mSd240VideoUri = uri;
+        return this;
+    }
+
     @Nullable
     public Uri getSd360VideoUri() {
         return mSd360VideoUri;
+    }
+
+    protected YouTubeExtractionResult setSd360VideoUri(Uri uri) {
+        mSd360VideoUri = uri;
+        return this;
     }
 
     @Nullable
@@ -45,9 +48,19 @@ public class YouTubeExtractionResult implements Parcelable {
         return mHd720VideoUri;
     }
 
+    protected YouTubeExtractionResult setHd720VideoUri(Uri uri) {
+        mHd720VideoUri = uri;
+        return this;
+    }
+
     @Nullable
     public Uri getHd1080VideoUri() {
         return mHd1080VideoUri;
+    }
+
+    protected YouTubeExtractionResult setHd1080VideoUri(Uri uri) {
+        mHd1080VideoUri = uri;
+        return this;
     }
 
     /**
@@ -80,9 +93,19 @@ public class YouTubeExtractionResult implements Parcelable {
         return mMediumThumbUri;
     }
 
+    protected YouTubeExtractionResult setMediumThumbUri(Uri uri) {
+        mMediumThumbUri = uri;
+        return this;
+    }
+
     @Nullable
     public Uri getHighThumbUri() {
         return mHighThumbUri;
+    }
+
+    protected YouTubeExtractionResult setHighThumbUri(Uri uri) {
+        mHighThumbUri = uri;
+        return this;
     }
 
     @Nullable
@@ -90,9 +113,19 @@ public class YouTubeExtractionResult implements Parcelable {
         return mDefaultThumbUri;
     }
 
+    protected YouTubeExtractionResult setDefaultThumbUri(Uri uri) {
+        mDefaultThumbUri = uri;
+        return this;
+    }
+
     @Nullable
     public Uri getStandardThumbUri() {
         return mStandardThumbUri;
+    }
+
+    protected YouTubeExtractionResult setStandardThumbUri(Uri uri) {
+        mStandardThumbUri = uri;
+        return this;
     }
 
     /**

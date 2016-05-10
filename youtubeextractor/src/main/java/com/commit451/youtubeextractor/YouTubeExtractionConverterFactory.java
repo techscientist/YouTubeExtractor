@@ -22,7 +22,7 @@ class YouTubeExtractionConverterFactory extends Converter.Factory {
         // This is good, we only register if the call includes this type, so that we could potentially
         // still be okay with having additional converter factories if we needed to
         if (type == YouTubeExtractionResult.class) {
-            return new YouTubeBodyConverter();
+            return new YouTubeBodyConverter(retrofit.baseUrl());
         }
         // Allow others to give it a go
         return null;

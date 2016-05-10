@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String STATE_SAVED_POSITION = "saved_position";
 
     private ImageView mImageView;
+    private TextView mDescription;
     private EMVideoView mVideoView;
 
     private int mSavedPosition;
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mImageView = (ImageView) findViewById(R.id.thumb);
         mVideoView = (EMVideoView) findViewById(R.id.video_view);
+        mDescription = (TextView) findViewById(R.id.description);
 
         mExtractor = YouTubeExtractor.create();
         mExtractor.extract(GRID_YOUTUBE_ID).enqueue(mExtractionCallback);

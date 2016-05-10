@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.HttpUrl;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
@@ -21,6 +22,12 @@ import static java.util.Arrays.asList;
  * Converts the bodies for the YouTubes
  */
 class YouTubeBodyConverter implements Converter<ResponseBody, YouTubeExtractionResult> {
+
+    private HttpUrl mBaseUrl;
+
+    public YouTubeBodyConverter(HttpUrl baseUrl) {
+        mBaseUrl = baseUrl;
+    }
 
     @Override
     public YouTubeExtractionResult convert(ResponseBody value) throws IOException {
@@ -64,9 +71,17 @@ class YouTubeBodyConverter implements Converter<ResponseBody, YouTubeExtractionR
             final Uri highThumbUri = video.containsKey("iurlhq") ? Uri.parse(video.get("iurlhq")) : null;
             final Uri defaultThumbUri = video.containsKey("iurl") ? Uri.parse(video.get("iurl")) : null;
             final Uri standardThumbUri = video.containsKey("iurlsd") ? Uri.parse(video.get("iurlsd")) : null;
+            //final String description = doc.select("p[id=\"eow-description\"]").first().html();
 
-            return new YouTubeExtractionResult(sd240VideoUri, sd360VideoUri, hd720VideoUri, hd1080VideoUri,
-                    mediumThumbUri, highThumbUri, defaultThumbUri, standardThumbUri);
+            return new YouTubeExtractionResult()
+                    .setSd240VideoUri(sd240VideoUri)
+                    .setSd360VideoUri(sd360VideoUri)
+                    .setHd720VideoUri(hd720VideoUri)
+                    .setHd1080VideoUri(hd1080VideoUri)
+                    .setMediumThumbUri(mediumThumbUri)
+                    .setHighThumbUri(highThumbUri)
+                    .setDefaultThumbUri(defaultThumbUri)
+                    .setStandardThumbUri(standardThumbUri);
         } else {
             throw new YouTubeExtractionException("Status: " + video.get("status") + "\nReason: " + video.get("reason") + "\nError code: " + video.get("errorcode"));
         }

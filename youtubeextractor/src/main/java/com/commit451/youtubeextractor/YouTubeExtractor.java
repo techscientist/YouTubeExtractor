@@ -19,21 +19,24 @@ import retrofit2.http.Query;
  */
 public class YouTubeExtractor {
 
+    public static final int YOUTUBE_VIDEO_QUALITY_SMALL_240 = 36;
+    public static final int YOUTUBE_VIDEO_QUALITY_MEDIUM_360 = 18;
+    public static final int YOUTUBE_VIDEO_QUALITY_HD_720 = 22;
+    public static final int YOUTUBE_VIDEO_QUALITY_HD_1080 = 37;
+
+    private static final String EL_TYPE = "info";
+    private static final String PS_TYPE = "default";
+    private static final String GL_TYPE = "US";
     /**
      * Retrofit interface, which we use, but do not expose
      */
     interface YouTube {
 
-        @GET("get_video_info?el=embedded&ps=default&gl=US")
+        @GET("get_video_info?el=" + EL_TYPE + "&ps=" + PS_TYPE + "&gl=" + GL_TYPE)
         Call<YouTubeExtractionResult> getYouTubeVideoData(@Query("video_id") String videoId,
                                                           @Query("language") String language,
                                                           @Header("Accept-Language") String languageForHeader);
     }
-
-    public static int YOUTUBE_VIDEO_QUALITY_SMALL_240 = 36;
-    public static int YOUTUBE_VIDEO_QUALITY_MEDIUM_360 = 18;
-    public static int YOUTUBE_VIDEO_QUALITY_HD_720 = 22;
-    public static int YOUTUBE_VIDEO_QUALITY_HD_1080 = 37;
 
     private YouTube mYouTube;
     private String mLanguage;
