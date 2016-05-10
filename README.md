@@ -7,22 +7,33 @@ A helper to extract the streaming URL from a YouTube video
 This library was originally found [here](https://github.com/flipstudio/YouTubeExtractor) in a project by [flipstudio](https://github.com/flipstudio). It has since been modified and cleaned up a bit to make it more user friendly.
 
 # Usage
+Under the hood, this library uses [Retrofit](http://square.github.io/retrofit/) to fetch the video metadata. If you are familiar with the Retrofit public API, this library will be a breeze for you.
 This library is only responsible for getting the information needed from a YouTube video given its video id (which can be found in the url of any youtube video. It is not responsible for playback of the video. However, you can see in the sample app how this can be done using `MediaPlayer` and a `SurfaceView`
 Typical usage looks like this:
 ```java
-YouTubeExtractor extractor = new YouTubeExtractor(GRID_YOUTUBE_ID);
-    extractor.extract(new YouTubeExtractor.Callback() {
-        @Override
-        public void onSuccess(YouTubeExtractor.Result result) {
-            Uri hdUri = result.getHd1080VideoUri();
-            //See the sample for more
-        }
+// You probably would want to keep one of these extractors around.
+YouTubeExtractor extractor = YouTubeExtractor.create();
+mExtractor.extract(GRID_YOUTUBE_ID).enqueue(new Callback<YouTubeExtractionResult>() {
+    @Override
+    public void onResponse(Call<YouTubeExtractionResult> call, Response<YouTubeExtractionResult> response) {
+        Uri hdUri = result.getHd1080VideoUri();
+                    //See the sample for more
+    }
 
-        @Override
-        public void onFailure(Throwable t) {
-            t.printStackTrace();
-        }
-    });
+    @Override
+    public void onFailure(Call<YouTubeExtractionResult> call, Throwable t) {
+        t.printStackTrace();
+        //Alert your user!
+    }
+});
+```
+As you can with Retrofit, you can also extract the result right away:
+```java
+// this will extract the result on the current thread. Don't use this on the main thread!
+Response<YouTubeExtractionResult> response = extractor.extract().execute();
+if (response.isSuccessful()) {
+    //do your thing(s)
+}
 ```
 
 License

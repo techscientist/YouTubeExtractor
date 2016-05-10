@@ -4,12 +4,19 @@ import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.commit451.youtubeextractor.YouTubeExtractor;
+import com.commit451.youtubeextractor.YouTubeExtrationResult;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,17 +53,22 @@ public class MainActivity extends AppCompatActivity {
             mp.seekTo(7000);
         }
     };
-    private YouTubeExtractor.Callback mCallback = new YouTubeExtractor.Callback() {
+
+    private Callback<YouTubeExtrationResult> mExtractionCallback = new Callback<YouTubeExtrationResult>() {
         @Override
-        public void onSuccess(YouTubeExtractor.Result result) {
-            bindVideoResult(result);
+        public void onResponse(Call<YouTubeExtrationResult> call, Response<YouTubeExtrationResult> response) {
+            Log.d("OnSuccess", "Got a result with the best url: " + response.body().getBestAvaiableQualityVideoUri());
+            bindVideoResult(response.body());
         }
 
         @Override
-        public void onFailure(Throwable t) {
+        public void onFailure(Call<YouTubeExtrationResult> call, Throwable t) {
             t.printStackTrace();
+            Toast.makeText(MainActivity.this, "It failed to extract. So sad", Toast.LENGTH_SHORT).show();
         }
     };
+
+    private YouTubeExtractor mExtractor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
         mTextureView = (TextureView) findViewById(R.id.texture_view);
         mTextureView.addOnLayoutChangeListener(mOnLayoutChangeListener);
 
-        YouTubeExtractor extractor = new YouTubeExtractor(GRID_YOUTUBE_ID);
-        extractor.extract(mCallback);
+        mExtractor = YouTubeExtractor.create();
+        mExtractor.extract(GRID_YOUTUBE_ID).enqueue(mExtractionCallback);
     }
 
-    private void bindVideoResult(YouTubeExtractor.Result result) {
+    private void bindVideoResult(YouTubeExtrationResult result) {
         try {
             mMediaPlayer = new MediaPlayer();
             mMediaPlayer.setDataSource(this, result.getBestAvaiableQualityVideoUri());
