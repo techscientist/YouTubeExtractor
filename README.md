@@ -30,7 +30,7 @@ mExtractor.extract(GRID_YOUTUBE_ID).enqueue(new Callback<YouTubeExtractionResult
 As you can with Retrofit, you can also extract the result right away:
 ```java
 // this will extract the result on the current thread. Don't use this on the main thread!
-Response<YouTubeExtractionResult> response = extractor.extract().execute();
+Response<YouTubeExtractionResult> response = extractor.extract(GRID_VIDEO_ID).execute();
 if (response.isSuccessful()) {
     //do your thing(s)
 }
