@@ -68,7 +68,7 @@ public class YouTubeExtractionResult implements Parcelable {
      * @return the best quality video uri, or null if no uri is available
      */
     @Nullable
-    public Uri getBestAvaiableQualityVideoUri() {
+    public Uri getBestAvailableQualityVideoUri() {
         Uri uri = getHd1080VideoUri();
         if (uri != null) {
             return uri;
@@ -133,7 +133,7 @@ public class YouTubeExtractionResult implements Parcelable {
      * @return the best image uri, or null if none exist
      */
     @Nullable
-    public Uri getBestAvaiableQualityThumbUri() {
+    public Uri getBestAvailableQualityThumbUri() {
         Uri uri = getHighThumbUri();
         if (uri != null) {
             return uri;

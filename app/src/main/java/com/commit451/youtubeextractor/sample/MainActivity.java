@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Callback<YouTubeExtractionResult> mExtractionCallback = new Callback<YouTubeExtractionResult>() {
         @Override
         public void onResponse(Call<YouTubeExtractionResult> call, Response<YouTubeExtractionResult> response) {
-            Log.d("OnSuccess", "Got a result with the best url: " + response.body().getBestAvaiableQualityVideoUri());
+            Log.d("OnSuccess", "Got a result with the best url: " + response.body().getBestAvailableQualityVideoUri());
             bindVideoResult(response.body());
         }
 
@@ -107,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindVideoResult(YouTubeExtractionResult result) {
         Glide.with(this)
-                .load(result.getHighThumbUri())
+                .load(result.getBestAvailableQualityThumbUri())
                 .into(mImageView);
         mVideoView.setScaleType(ScaleType.CENTER_CROP);
         mVideoView.setOnPreparedListener(mOnPreparedListener);
         mVideoView.setOnCompletionListener(mOnCompletionListener);
         mVideoView.setOnErrorListener(mOnErrorListener);
-        mVideoView.setVideoURI(result.getBestAvaiableQualityVideoUri());
+        mVideoView.setVideoURI(result.getBestAvailableQualityVideoUri());
     }
 }
