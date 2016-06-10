@@ -8,7 +8,7 @@ This library was originally found [here](https://github.com/flipstudio/YouTubeEx
 
 # Usage
 Under the hood, this library uses [Retrofit](http://square.github.io/retrofit/) to fetch the video metadata. If you are familiar with the Retrofit public API, this library will be a breeze for you.
-This library is only responsible for getting the information needed from a YouTube video given its video id (which can be found in the url of any youtube video. It is not responsible for playback of the video. However, you can see in the sample app how this can be done using `MediaPlayer` and a `SurfaceView`
+This library is only responsible for getting the information needed from a YouTube video given its video id (which can be found in the url of any youtube video. It is not responsible for playback of the video. However, you can see in the sample app how this can be done using [ExoMedia](https://github.com/brianwernick/ExoMedia)
 Typical usage looks like this:
 ```java
 // You probably would want to keep one of these extractors around.
