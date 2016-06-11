@@ -8,13 +8,24 @@ import retrofit2.Call;
  * given its video id, which is typically contained within the YouTube video url, ie. https://www.youtube.com/watch?v=dQw4w9WgXcQ
  * has a video id of dQw4w9WgXcQ
  */
-public class YouTubeExtractor extends BaseExtractor<YouTubeDefault> implements YouTubeDefault {
+public class YouTubeExtractor extends BaseExtractor<YouTube> implements YouTube {
 
+    /**
+     * Create a new YouTubeExtractor
+     */
     public YouTubeExtractor() {
-        super(YouTubeDefault.class, new OkHttpClient.Builder(), null);
+        this(new OkHttpClient.Builder());
     }
 
-    @Override public Call<YouTubeExtractionResult> getYouTubeVideoData(String videoId) {
-        return mYouTube.getYouTubeVideoData(videoId);
+    /**
+     * Create a new YouTubeExtractor with the OkHttp client
+     */
+    public YouTubeExtractor(OkHttpClient.Builder okHttpBuilder) {
+        super(YouTube.class, okHttpBuilder, null);
+    }
+
+    @Override
+    public Call<YouTubeExtractionResult> extract(String videoId) {
+        return getYouTube().extract(videoId);
     }
 }

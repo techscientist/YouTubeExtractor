@@ -1,1 +1,1 @@
-include ':app', ':youtubeextractor'
+include ':app', ':youtubeextractor', ':rxyoutubeextractor'

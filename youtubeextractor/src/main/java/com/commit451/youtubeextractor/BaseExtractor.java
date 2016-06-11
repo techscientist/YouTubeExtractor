@@ -6,6 +6,10 @@ import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
 
+/**
+ * Base YouTube extractor, which you can extend if you want to customize to provide your own call adapter
+ * @param <T> the Retrofit interface
+ */
 public abstract class BaseExtractor<T> {
 
     private static final String BASE_URL = "https://www.youtube.com/";
@@ -14,7 +18,7 @@ public abstract class BaseExtractor<T> {
     static final int YOUTUBE_VIDEO_QUALITY_HD_720 = 22;
     static final int YOUTUBE_VIDEO_QUALITY_HD_1080 = 37;
 
-    protected final T mYouTube;
+    private final T mYouTube;
 
     private final YoutubeExtractorInterceptor mYoutubeExtractorInterceptor = new YoutubeExtractorInterceptor();
 
@@ -25,18 +29,26 @@ public abstract class BaseExtractor<T> {
 
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder();
 
-        if (callAdapterFactory != null) {
-            retrofitBuilder.addCallAdapterFactory(callAdapterFactory);
-        }
-
         retrofitBuilder
             .baseUrl(BASE_URL)
             .client(okBuilder.build())
             .addConverterFactory(YouTubeExtractionConverterFactory.create());
 
+        if (callAdapterFactory != null) {
+            retrofitBuilder.addCallAdapterFactory(callAdapterFactory);
+        }
+
         mYouTube = retrofitBuilder.build().create(youTubeClass);
     }
 
+    public T getYouTube() {
+        return mYouTube;
+    }
+
+    /**
+     * Set the language. Defaults to {@link java.util.Locale#getDefault()}
+     * @param language the language
+     */
     public void setLanguage(String language) {
         mYoutubeExtractorInterceptor.setLanguage(language);
     }
