@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private YouTubeExtractor mExtractor;
+    private final YouTubeExtractor mExtractor = new YouTubeExtractor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         mVideoView = (EMVideoView) findViewById(R.id.video_view);
         mDescription = (TextView) findViewById(R.id.description);
 
-        mExtractor = YouTubeExtractor.create();
-        mExtractor.extract(GRID_YOUTUBE_ID).enqueue(mExtractionCallback);
+        mExtractor.getYouTubeVideoData(GRID_YOUTUBE_ID).enqueue(mExtractionCallback);
         if (savedInstanceState != null) {
             mSavedPosition = savedInstanceState.getInt(STATE_SAVED_POSITION, 0);
         }
