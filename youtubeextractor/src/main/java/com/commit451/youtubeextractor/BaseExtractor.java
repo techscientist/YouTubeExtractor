@@ -25,6 +25,9 @@ public abstract class BaseExtractor<T> {
     public BaseExtractor(Class<T> youTubeClass, OkHttpClient.Builder okBuilder,
                          @Nullable CallAdapter.Factory callAdapterFactory) {
 
+        if (okBuilder == null) {
+            okBuilder = new OkHttpClient.Builder();
+        }
         okBuilder.addInterceptor(mYoutubeExtractorInterceptor);
 
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder();

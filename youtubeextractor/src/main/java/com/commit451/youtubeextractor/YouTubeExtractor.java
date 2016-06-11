@@ -10,17 +10,31 @@ import retrofit2.Call;
  */
 public class YouTubeExtractor extends BaseExtractor<YouTube> implements YouTube {
 
+
     /**
-     * Create a new YouTubeExtractor
+     * Create a YouTubeExtractor
+     * @return a new {@link YouTubeExtractor}
      */
-    public YouTubeExtractor() {
-        this(new OkHttpClient.Builder());
+    public static YouTubeExtractor create() {
+        return new YouTubeExtractor();
     }
 
     /**
      * Create a new YouTubeExtractor with the OkHttp client
+     * @return a new {@link YouTubeExtractor}
      */
-    public YouTubeExtractor(OkHttpClient.Builder okHttpBuilder) {
+    public static YouTubeExtractor create(OkHttpClient.Builder okHttpBuilder) {
+        return new YouTubeExtractor(okHttpBuilder);
+    }
+
+    /**
+     * Create a new YouTubeExtractor
+     */
+    private YouTubeExtractor() {
+        this(new OkHttpClient.Builder());
+    }
+
+    private YouTubeExtractor(OkHttpClient.Builder okHttpBuilder) {
         super(YouTube.class, okHttpBuilder, null);
     }
 

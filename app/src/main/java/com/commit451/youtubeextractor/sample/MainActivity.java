@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private final YouTubeExtractor mExtractor = new YouTubeExtractor();
-    private final RxYouTubeExtractor mRxYouTubeExtractor = new RxYouTubeExtractor();
+    private final YouTubeExtractor mExtractor = YouTubeExtractor.create();
+    private final RxYouTubeExtractor mRxYouTubeExtractor = RxYouTubeExtractor.create();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
