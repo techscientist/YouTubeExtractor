@@ -18,8 +18,8 @@ public class ExtractionTest {
 
     @Test
     public void testExtraction() throws Exception {
-        YouTubeExtractor extractor = YouTubeExtractor.create();
-        Response<YouTubeExtractionResult> resultResponse = extractor.extract(GRID_YOUTUBE_ID).execute();
+        YouTubeExtractor extractor = new YouTubeExtractor();
+        Response<YouTubeExtractionResult> resultResponse = extractor.getYouTubeVideoData(GRID_YOUTUBE_ID).execute();
         TestUtil.assertRetrofitResponseSuccess(resultResponse);
         //Verified before that this ID should hold at least one video and image URI
 //        Uri bestVideoUri = resultResponse.body().getBestAvaiableQualityVideoUri();
