@@ -23,7 +23,7 @@ public class RxYouTubeExtractor extends BaseExtractor<RxYouTube> implements RxYo
      * @return a new {@link RxYouTubeExtractor}
      */
     public static RxYouTubeExtractor create() {
-        return new RxYouTubeExtractor(null, null);
+        return create(null, null);
     }
 
     /**

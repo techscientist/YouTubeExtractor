@@ -35,7 +35,7 @@ Typical usage looks like this:
 ```java
 // You probably would want to keep one of these extractors around.
 YouTubeExtractor extractor = YouTubeExtractor.create();
-mExtractor.extract(GRID_YOUTUBE_ID).enqueue(new Callback<YouTubeExtractionResult>() {
+mExtractor.extract("9d8wWcJLnFI").enqueue(new Callback<YouTubeExtractionResult>() {
     @Override
     public void onResponse(Call<YouTubeExtractionResult> call, Response<YouTubeExtractionResult> response) {
         Uri hdUri = result.getHd1080VideoUri();
@@ -51,27 +51,27 @@ mExtractor.extract(GRID_YOUTUBE_ID).enqueue(new Callback<YouTubeExtractionResult
 ```
 And for RxJava users:
 ```java
-RxYouTubeExtractor mRxYouTubeExtractor = RxYouTubeExtractor.create();
-Observable<YouTubeExtractionResult> result = mRxYouTubeExtractor.extract(GRID_YOUTUBE_ID);
-    result.subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Subscriber<YouTubeExtractionResult>() {
-                @Override
-                public void onCompleted() {
-                }
+RxYouTubeExtractor rxYouTubeExtractor = RxYouTubeExtractor.create();
+Observable<YouTubeExtractionResult> result = rxYouTubeExtractor.extract("9d8wWcJLnFI");
+result.subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<YouTubeExtractionResult>() {
+            @Override
+            public void onCompleted() {
+            }
 
-                @Override
-                public void onError(Throwable e) {
-                    t.printStackTrace();
-                    //Alert your user!
-                }
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                //Alert your user!
+            }
 
-                @Override
-                public void onNext(YouTubeExtractionResult youTubeExtractionResult) {
-                    Uri hdUri = result.getHd1080VideoUri();
-                    //See the sample for more
-                }
-            });
+            @Override
+            public void onNext(YouTubeExtractionResult youTubeExtractionResult) {
+                Uri hdUri = youTubeExtractionResult.getHd1080VideoUri();
+                //See the sample for more
+            }
+        });
 ```
 Note: the above example also requires [RxAndroid](https://github.com/ReactiveX/RxAndroid) for `AndroidSchedulers`
 
